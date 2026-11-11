@@ -12,7 +12,7 @@ jobs:
         include:
           - { os: ubuntu-24.04, name: Linux }
           - { os: windows-2022, name: Windows }
-          - { os: macos-14,     name: macOS }
+          - { os: macos-15,     name: macOS }
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
