@@ -55,27 +55,27 @@ jobs:
         run: |
           curl -sSfL -o pv.zip https://github.com/Tracktion/pluginval/releases/latest/download/pluginval_Linux.zip
           unzip -q pv.zip
-          VST=$(find build -type d -name "KingLion Box.vst3" | head -1)
+          VST=$(find build -type d -name "TUBEVOX.vst3" | head -1)
           xvfb-run -a ./pluginval --strictness-level 7 --validate-in-process --skip-gui-tests "$VST"
 
       - name: Empacotar
         shell: bash
         run: |
           mkdir -p dist
-          VST=$(find build -type d -name "KingLion Box.vst3" | grep -i release | head -1)
-          [ -z "$VST" ] && VST=$(find build -type d -name "KingLion Box.vst3" | head -1)
+          VST=$(find build -type d -name "TUBEVOX.vst3" | grep -i release | head -1)
+          [ -z "$VST" ] && VST=$(find build -type d -name "TUBEVOX.vst3" | head -1)
           cp -R "$VST" dist/
           if [ "$RUNNER_OS" == "macOS" ]; then
-            AU=$(find build -type d -name "KingLion Box.component" | head -1); cp -R "$AU" dist/
-            APP=$(find build -type d -name "KingLion Box.app" | head -1); cp -R "$APP" dist/
+            AU=$(find build -type d -name "TUBEVOX.component" | head -1); cp -R "$AU" dist/
+            APP=$(find build -type d -name "TUBEVOX.app" | head -1); cp -R "$APP" dist/
           elif [ "$RUNNER_OS" == "Windows" ]; then
-            APP=$(find build -type f -name "KingLion Box.exe" | head -1); cp "$APP" dist/
+            APP=$(find build -type f -name "TUBEVOX.exe" | head -1); cp "$APP" dist/
           else
-            APP=$(find build -type f -name "KingLion Box" -perm -u+x | head -1); cp "$APP" dist/
+            APP=$(find build -type f -name "TUBEVOX" -perm -u+x | head -1); cp "$APP" dist/
           fi
           cp LEIA-ME.txt dist/
 
       - uses: actions/upload-artifact@v4
         with:
-          name: KingLion-Box-${{ matrix.name }}
+          name: TUBEVOX-${{ matrix.name }}
           path: dist

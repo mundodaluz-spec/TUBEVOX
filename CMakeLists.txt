@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(KingLionBox VERSION 1.0.0 LANGUAGES C CXX)
+project(TUBEVOX VERSION 1.0.0 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -31,6 +31,10 @@ target_sources(KLBShared INTERFACE
     ${CMAKE_CURRENT_SOURCE_DIR}/Source/PluginEditor.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Source/UI/Widgets.cpp)
 target_include_directories(KLBShared INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/Source)
+if(MSVC)
+    add_compile_options(/utf-8)
+    target_compile_options(KLBShared INTERFACE /utf-8)
+endif()
 target_compile_definitions(KLBShared INTERFACE
     JUCE_WEB_BROWSER=0 JUCE_USE_CURL=0 JUCE_VST3_CAN_REPLACE_VST2=0
     JUCE_DISPLAY_SPLASH_SCREEN=0 KLB_VERSION="${PROJECT_VERSION}")
@@ -45,10 +49,10 @@ endif()
 juce_add_plugin(KingLionBox
     COMPANY_NAME "WYATT Sounds"
     COMPANY_WEBSITE ""
-    BUNDLE_ID com.wyattsounds.kinglionbox
+    BUNDLE_ID com.wyattsounds.tubevox
     PLUGIN_MANUFACTURER_CODE Wytt
-    PLUGIN_CODE Klbx
-    PRODUCT_NAME "KingLion Box"
+    PLUGIN_CODE Tbvx
+    PRODUCT_NAME "TUBEVOX"
     FORMATS ${KLB_FORMATS}
     IS_SYNTH FALSE
     NEEDS_MIDI_INPUT FALSE

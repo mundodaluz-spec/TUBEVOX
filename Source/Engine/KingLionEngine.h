@@ -1,4 +1,4 @@
-// KingLion Box — motor de áudio (WYATT Sounds). Sem interface e sem JUCE.
+// TUBEVOX — motor de áudio (WYATT Sounds). Sem interface e sem JUCE.
 //
 // Cadeia (por canal):
 //   ENTRADA → FASE → CORTE DE GRAVES (80/120) → COMPRESSOR ÓPTICO 3:1 →

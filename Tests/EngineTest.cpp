@@ -1,4 +1,4 @@
-// KingLion Box — testes do motor. Saída: uma linha por verificação; código 0 se tudo OK.
+// TUBEVOX — testes do motor. Saída: uma linha por verificação; código 0 se tudo OK.
 #include "../Source/Engine/KingLionEngine.h"
 #include <cstdio>
 #include <vector>

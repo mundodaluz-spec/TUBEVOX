@@ -1,10 +1,10 @@
-KINGLION BOX 1.0 — WYATT Sounds
+TUBEVOX 1.0 — WYATT Sounds
 Canal de voz valvulado: compressor óptico, pré valvulado, EQ pico-vale-pico e de-esser/limitador.
 
 INSTALAR
-  Windows: copie "KingLion Box.vst3" para C:\Program Files\Common Files\VST3\
-  Mac:     copie "KingLion Box.vst3" para /Library/Audio/Plug-Ins/VST3/
-           e "KingLion Box.component" para /Library/Audio/Plug-Ins/Components/
+  Windows: copie "TUBEVOX.vst3" para C:\Program Files\Common Files\VST3\
+  Mac:     copie "TUBEVOX.vst3" para /Library/Audio/Plug-Ins/VST3/
+           e "TUBEVOX.component" para /Library/Audio/Plug-Ins/Components/
            (sem assinatura: na primeira vez, botão direito > Abrir no app Standalone)
   Depois, peça para a DAW procurar plugins novos. Fabricante: WYATT Sounds.
 

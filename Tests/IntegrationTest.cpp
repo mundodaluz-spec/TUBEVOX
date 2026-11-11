@@ -1,4 +1,4 @@
-// KingLion Box — teste de integração do plugin (processador + tela, mouse simulado).
+// TUBEVOX — teste de integração do plugin (processador + tela, mouse simulado).
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <juce_gui_basics/juce_gui_basics.h>
 #include "PluginProcessor.h"
@@ -77,7 +77,7 @@ int main (int argc, char** argv)
         for (int c = 0; c < 2; ++c) for (int i = 0; i < out.getNumSamples(); ++i) finite &= std::isfinite (out.getSample (c, i));
         const double lvl = rmsDb (out, 0, 10000, 10000);
         check (finite && std::abs (lvl - (-9.03)) < 0.2, "Padrão: passa o som (nível igual, cor leve)", String (lvl, 2) + " dB RMS (entrada −9,03)");
-        check (p.getName() == "KingLion Box" && p.getLatencySamples() == 0, "Nome e latência zero", p.getName() + ", " + String (p.getLatencySamples()) + " amostras");
+        check (p.getName() == "TUBEVOX" && p.getLatencySamples() == 0, "Nome e latência zero", p.getName() + ", " + String (p.getLatencySamples()) + " amostras");
     }
 
     // ---------- tela + mouse ----------
@@ -140,7 +140,7 @@ int main (int argc, char** argv)
         check (std::abs (p.getMeterVu (2) - (Decibels::gainToDecibels (0.7f) + 18.0f)) < 1.0f, "VU em PRÉ: 0 VU = −18 dBFS",
                String (p.getMeterVu (2), 1) + " VU para seno de " + String (Decibels::gainToDecibels (0.7f), 1) + " dBFS");
 
-        savePng (*ed, shots.getChildFile ("kinglionbox.png"));
+        savePng (*ed, shots.getChildFile ("tubevox.png"));
         {
             // tudo mexido: confere knobs girando e alavancas espelhando sobre a arte
             MemoryBlock keep; p.getStateInformation (keep);
@@ -151,14 +151,14 @@ int main (int argc, char** argv)
             setP (p, klb::ids::phase, 1); setP (p, klb::ids::comp, 0); setP (p, klb::ids::link, 0); setP (p, klb::ids::eq, 0);
             setP (p, klb::ids::power, 0); setP (p, klb::ids::hpf, 0); setP (p, klb::ids::dsListen, 0); setP (p, klb::ids::dsMode, 2);
             for (int i = 0; i < 3; ++i) panel.updateMeter (0.033f);
-            savePng (*ed, shots.getChildFile ("kinglionbox-mexido.png"));
+            savePng (*ed, shots.getChildFile ("tubevox-mexido.png"));
             setP (p, klb::ids::hpf, 1); setP (p, klb::ids::dsListen, 1); setP (p, klb::ids::dsMode, 1);
-            savePng (*ed, shots.getChildFile ("kinglionbox-mexido2.png"));
+            savePng (*ed, shots.getChildFile ("tubevox-mexido2.png"));
             p.setStateInformation (keep.getData(), (int) keep.getSize());
         }
         ed->setSize ((int) (KingLionPanel::W * 1.5), (int) (KingLionPanel::H * 1.5));
         check (std::abs (panel.getTransform().mat00 - 1.5f) < 1e-3f, "Tela redimensiona em 150%", String (ed->getWidth()) + "×" + String (ed->getHeight()));
-        savePng (*ed, shots.getChildFile ("kinglionbox-150.png"));
+        savePng (*ed, shots.getChildFile ("tubevox-150.png"));
         auto* cons = ed->getConstrainer();
         Rectangle<int> want (0, 0, (int) (KingLionPanel::W * 0.5), (int) (KingLionPanel::H * 0.5));
         cons->setBoundsForComponent (ed.get(), want, false, false, true, true);

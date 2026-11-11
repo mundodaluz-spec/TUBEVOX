@@ -1,4 +1,4 @@
-// KingLion Box — parâmetros e presets de fábrica.
+// TUBEVOX — parâmetros e presets de fábrica.
 #pragma once
 #include <juce_audio_processors/juce_audio_processors.h>
 #include "Engine/KingLionEngine.h"

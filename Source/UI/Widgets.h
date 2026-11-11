@@ -1,4 +1,4 @@
-// KingLion Box — interface feita sobre a arte original (skin.jpg, 2400×1504 = 2× o painel).
+// TUBEVOX — interface feita sobre a arte original (skin.jpg, 2400×1504 = 2× o painel).
 // As partes móveis são recortadas da própria arte: knobs giram, alavancas espelham, VU e preset são desenhados por cima.
 #pragma once
 #include <juce_gui_basics/juce_gui_basics.h>

@@ -1,4 +1,4 @@
-// KingLion Box — blocos de DSP (WYATT Sounds). Sem dependência do JUCE.
+// TUBEVOX — blocos de DSP (WYATT Sounds). Sem dependência do JUCE.
 #pragma once
 #include <cmath>
 #include <algorithm>

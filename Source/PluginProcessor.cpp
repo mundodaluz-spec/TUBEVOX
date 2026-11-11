@@ -5,7 +5,7 @@ KingLionProcessor::KingLionProcessor()
     : AudioProcessor (BusesProperties()
                           .withInput  ("Input", juce::AudioChannelSet::stereo(), true)
                           .withOutput ("Output",  juce::AudioChannelSet::stereo(), true)),
-      apvts (*this, nullptr, "KINGLIONBOX", klb::createLayout())
+      apvts (*this, nullptr, "TUBEVOX", klb::createLayout())
 {
     cache.attach (apvts);
 }

@@ -1,4 +1,4 @@
-// KingLion Box — tela (WYATT Sounds). Fundo = a arte original; partes móveis por cima.
+// TUBEVOX — tela (WYATT Sounds). Fundo = a arte original; partes móveis por cima.
 #pragma once
 #include <juce_audio_processors/juce_audio_processors.h>
 #include "PluginProcessor.h"

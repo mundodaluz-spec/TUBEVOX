@@ -1,4 +1,4 @@
-// KingLion Box — processador (WYATT Sounds).
+// TUBEVOX — processador (WYATT Sounds).
 #pragma once
 #include <juce_audio_processors/juce_audio_processors.h>
 #include "Parameters.h"
@@ -18,7 +18,7 @@ public:
     juce::AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override { return true; }
 
-    const juce::String getName() const override { return "KingLion Box"; }
+    const juce::String getName() const override { return "TUBEVOX"; }
     bool acceptsMidi() const override { return false; }
     bool producesMidi() const override { return false; }
     bool isMidiEffect() const override { return false; }
