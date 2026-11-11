@@ -79,3 +79,23 @@ jobs:
         with:
           name: TUBEVOX-${{ matrix.name }}
           path: dist
+
+  release:
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: art
+      - name: Compactar
+        run: |
+          cd art
+          for d in */; do (cd "$d" && zip -qr "../../${d%/}.zip" .); done
+          ls -la ..
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: TUBEVOX 1.0 (build ${{ github.run_number }})
+          files: "*.zip"
