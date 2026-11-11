@@ -1,0 +1,81 @@
+name: build
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-24.04, name: Linux }
+          - { os: windows-2022, name: Windows }
+          - { os: macos-14,     name: macOS }
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Dependencias (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build libasound2-dev libfreetype-dev libfontconfig1-dev \
+            libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxext-dev libgl1-mesa-dev xvfb
+
+      - name: Configurar
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" == "macOS" ]; then
+            cmake -S . -B build -G Xcode -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
+          elif [ "$RUNNER_OS" == "Windows" ]; then
+            cmake -S . -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_MSVC_RUNTIME_LIBRARY="MultiThreaded"
+          else
+            cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+          fi
+
+      - name: Compilar
+        run: cmake --build build --config Release --parallel
+
+      - name: Testes do motor
+        shell: bash
+        run: |
+          EXE=$(find build -type f \( -name KingLionEngineTest -o -name KingLionEngineTest.exe \) | head -1)
+          "$EXE"
+
+      - name: Testes de integracao (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          EXE=$(find build -type f -name KingLionIntegration | head -1)
+          xvfb-run -a "$EXE" Screens
+
+      - name: pluginval (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          curl -sSfL -o pv.zip https://github.com/Tracktion/pluginval/releases/latest/download/pluginval_Linux.zip
+          unzip -q pv.zip
+          VST=$(find build -type d -name "KingLion Box.vst3" | head -1)
+          xvfb-run -a ./pluginval --strictness-level 7 --validate-in-process --skip-gui-tests "$VST"
+
+      - name: Empacotar
+        shell: bash
+        run: |
+          mkdir -p dist
+          VST=$(find build -type d -name "KingLion Box.vst3" | grep -i release | head -1)
+          [ -z "$VST" ] && VST=$(find build -type d -name "KingLion Box.vst3" | head -1)
+          cp -R "$VST" dist/
+          if [ "$RUNNER_OS" == "macOS" ]; then
+            AU=$(find build -type d -name "KingLion Box.component" | head -1); cp -R "$AU" dist/
+            APP=$(find build -type d -name "KingLion Box.app" | head -1); cp -R "$APP" dist/
+          elif [ "$RUNNER_OS" == "Windows" ]; then
+            APP=$(find build -type f -name "KingLion Box.exe" | head -1); cp "$APP" dist/
+          else
+            APP=$(find build -type f -name "KingLion Box" -perm -u+x | head -1); cp "$APP" dist/
+          fi
+          cp LEIA-ME.txt dist/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: KingLion-Box-${{ matrix.name }}
+          path: dist

@@ -1,0 +1,36 @@
+KINGLION BOX 1.0 — WYATT Sounds
+Canal de voz valvulado: compressor óptico, pré valvulado, EQ pico-vale-pico e de-esser/limitador.
+
+INSTALAR
+  Windows: copie "KingLion Box.vst3" para C:\Program Files\Common Files\VST3\
+  Mac:     copie "KingLion Box.vst3" para /Library/Audio/Plug-Ins/VST3/
+           e "KingLion Box.component" para /Library/Audio/Plug-Ins/Components/
+           (sem assinatura: na primeira vez, botão direito > Abrir no app Standalone)
+  Depois, peça para a DAW procurar plugins novos. Fabricante: WYATT Sounds.
+
+CADEIA DO SOM (em ordem)
+  ENTRADA → FASE → CORTE (80/120 Hz) → COMPRESSOR ÓPTICO 3:1 → PRÉ VALVULADO
+  → EQ (GRAVE / MÉDIO / AGUDO) → ESTÁGIO DE LINHA VALVULADO → DE-ESSER ou LIMITADOR → SAÍDA
+
+  O compressor fica ANTES da válvula, como no aparelho que inspirou o projeto:
+  ele segura o sinal antes de saturar o pré.
+
+DICAS
+  - Voz "na frente": suba o GANHO (55 ou 60) e baixe a ENTRADA. O pré satura mais e o compressor
+    segura os picos. Compense na SAÍDA.
+  - GANHO 50 dB = ganho unitário em sinal baixo. Cada degrau soma 5 dB.
+  - THRESHOLD do compressor: 0 = não comprime; 10 = limiar em −40 dBFS. Razão fixa 3:1.
+  - ATTACK e RELEASE: FAST → SLOW. A soltura é óptica: depois de uma compressão longa,
+    o compressor solta mais devagar.
+  - DE-ESSER: o botão redondo (OFF) liga e desliga a seção; aceso = desligado.
+    Clique em LIMITER para trocar entre de-esser e limitador (o rótulo ativo fica claro).
+    Escolha 3/6/9/12 kHz e suba o THRESHOLD até o S ficar natural.
+    MONITOR toca só a faixa que o de-esser escuta.
+  - LIMITER: 10:1 no fim da cadeia, para segurar picos.
+  - O VU mostra G-R (redução do compressor), IN (entrada), PRE (pré), OUT (saída) ou D-S (redução do de-esser).
+    Nos modos de nível, 0 VU = −18 dBFS.
+  - LIGA/DESL. desliga tudo com transição suave; em DESL., a saída é o áudio original exato.
+
+PRESETS
+  Default · Gospel Lead Vocal · Rap Vocal Upfront · Soft Backing Vocals · Speech & Sermon ·
+  Acoustic Guitar · Fat Bass · Punchy Snare · Lion Roar
